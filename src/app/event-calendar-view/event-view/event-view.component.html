@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 timeline">
+        <h3 style="text-align: center; color: aliceblue">Event Calender</h3>
+        <br>
+      <div>
+        <div class="row">
+          <div class="col-lg-4">
+            <form [formGroup]="dateForm">
+              <input type="date" class="form-control" formControlName="date" (ngModelChange)="getDate($event)"/>
+            </form>
+          </div>
+          <div class="col-lg-5 text-right">
+             <button class="btn btn-primary" routerLink="./event" >Add New Event</button>
+            </div>
+        </div>
+      </div>
+      <ul *ngIf="todayEvents.length">
+        <li *ngFor="let item of todayEvents">
+          <span></span>
+          <div>
+            <div class="title">{{item.title}}</div>
+            <div class="type"><a href="javascript:void(0);" routerLink="./event/{{item.id}}">Edit</a></div>
+            <div class="type"><a href="javascript:void(0);" (click)="delete(item.id)">Delete</a></div>
+          </div>
+          <span class="number"><span>{{item.startTime.startDate | date:'shortTime'}}</span> <span>{{item.endTime.endDate | date:'shortTime'}}</span></span>
+        </li>
+        <!-- <li>
+          <div>
+            <span></span>
+            <div class="title">Codify</div>
+            <div class="info">Let&apos;s make coolest things in javascript</div>
+            <div class="type">Prensetation</div>
+          </div>
+          <span class="number"><span>13:00</span> <span>14:00</span></span>
+        </li>
+        <li>
+          <div>
+            <span></span>
+            <div class="title">Codify</div>
+            <div class="info">Let&apos;s make coolest things in css</div>
+            <div class="type">Review</div>
+          </div>
+          <span class="number"><span>15:00</span> <span>17:45</span></span>
+        </li> -->
+      </ul>
+    <ul *ngIf="!todayEvents.length">
+      <li>
+        <p>
+          No events found on {{dateForm.controls.date.value}}
+        </p>
+      </li>
+    </ul>
+    </div>
+  </div>
+</div>
